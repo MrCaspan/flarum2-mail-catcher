@@ -83,7 +83,7 @@ Translations are in `resources/locale/en.yml`. Pull requests that add other lang
 
 Built by [MrCaspan](https://github.com/MrCaspan) for [PokerForum.ca](https://pokerforum.ca).
 
-This extension was written entirely with **[Claude Code](https://claude.com/claude-code)** (Anthropic's AI coding assistant), and tested on a real Flarum 2.0 forum. Issues and pull requests are welcome.
+**[Claude Code](https://claude.com/claude-code)** (Anthropic's AI coding assistant) was used to help vibe code this extension. It was tested on a real Flarum 2.0 forum. Issues and pull requests are welcome.
 
 ## License
 
