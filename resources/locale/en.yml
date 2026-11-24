@@ -17,3 +17,5 @@ mrcaspan-flarum2-mail-catcher:
     tab_html: HTML
     tab_text: Text
     tab_raw: Raw
+    show_dark: Dark
+    show_light: Light

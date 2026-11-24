@@ -5,6 +5,7 @@ import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import Link from 'flarum/common/components/Link';
 import classList from 'flarum/common/utils/classList';
 import extractText from 'flarum/common/utils/extractText';
+import darkEmail from '../utils/darkEmail';
 
 const PREFIX = 'mrcaspan-flarum2-mail-catcher.admin.';
 const t = (key, params) => app.translator.trans(PREFIX + key, params);
@@ -12,6 +13,16 @@ const t = (key, params) => app.translator.trans(PREFIX + key, params);
 const api = (id) => app.forum.attribute('apiUrl') + '/mail-catcher' + (id ? '/' + id : '');
 
 const formatDate = (iso) => (iso ? new Date(iso).toLocaleString() : '');
+
+// Whether the admin panel is showing in dark mode. Flarum puts the active theme
+// ("light", "dark", "dark-hc", ...) on <html data-theme>; anything else is
+// treated as "follow the system".
+const isDarkTheme = () => {
+  const theme = document.documentElement.getAttribute('data-theme') || '';
+  if (theme.startsWith('dark')) return true;
+  if (theme.startsWith('light')) return false;
+  return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+};
 
 export default class MailCatcherPage extends ExtensionPage {
   oninit(vnode) {
@@ -25,6 +36,8 @@ export default class MailCatcherPage extends ExtensionPage {
     this.loadingMessage = false;
     // Note: don't name this `view` — that would overwrite the component's view() method.
     this.activeTab = 'html';
+    // null = follow the admin theme; true/false = the admin flipped it.
+    this.darkPreview = null;
 
     this.load();
   }
@@ -168,10 +181,18 @@ export default class MailCatcherPage extends ExtensionPage {
       </Button>
     );
 
+    const dark = this.darkPreview === null ? isDarkTheme() : this.darkPreview;
+
     let body;
     if (this.activeTab === 'html' && msg.html) {
       // Sandboxed iframe: no scripts run; links open in a new tab.
-      body = <iframe className="MailCatcher-frame" sandbox="allow-popups allow-popups-to-escape-sandbox" srcdoc={'<base target="_blank">' + msg.html} />;
+      body = (
+        <iframe
+          className={classList('MailCatcher-frame', { 'MailCatcher-frame--dark': dark })}
+          sandbox="allow-popups allow-popups-to-escape-sandbox"
+          srcdoc={'<base target="_blank">' + (dark ? darkEmail(msg.html) : msg.html)}
+        />
+      );
     } else {
       const content = this.activeTab === 'raw' ? msg.raw : msg.text;
       body = <pre className="MailCatcher-pre">{content || t('empty_body')}</pre>;
@@ -197,6 +218,15 @@ export default class MailCatcherPage extends ExtensionPage {
           {tab('html', !msg.html)}
           {tab('text', false)}
           {tab('raw', false)}
+          {this.activeTab === 'html' && msg.html ? (
+            <Button
+              className="Button MailCatcher-themeToggle"
+              icon={dark ? 'fas fa-sun' : 'fas fa-moon'}
+              onclick={() => (this.darkPreview = !dark)}
+            >
+              {t(dark ? 'show_light' : 'show_dark')}
+            </Button>
+          ) : null}
         </div>
         {body}
       </div>

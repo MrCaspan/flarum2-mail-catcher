@@ -18,7 +18,7 @@ It's for test, staging and development copies of a Flarum forum. You can test si
   - **Delete** a single email, or **Delete all**
   - a warning when the mail driver isn't set to `database`, so you know mail isn't being caught
 - The admin page and API are only available to administrators.
-- Works with light and dark mode.
+- Works with light and dark mode. In dark mode the HTML tab shows the email dark too, the way Gmail and Outlook darken emails (colours flipped, images untouched), with a **Light/Dark** button to switch.
 - No settings and no outside services. The emails stay on your server.
 
 ## Requirements
