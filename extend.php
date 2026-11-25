@@ -22,8 +22,14 @@ return [
     (new Extend\Mail())
         ->driver('database', DatabaseDriver::class),
 
+    // Wraps the real mail transport for the Catch / Log modes.
+    (new Extend\ServiceProvider())
+        ->register(MailCatcherServiceProvider::class),
+
     // Admin-only API used by the extension's admin page.
     (new Extend\Routes('api'))
+        ->post('/mail-catcher/mode', 'mail-catcher.mode', ModeController::class)
+        ->post('/mail-catcher/{id:[0-9]+}/release', 'mail-catcher.release', ReleaseController::class)
         ->get('/mail-catcher', 'mail-catcher.index', MessagesController::class)
         ->get('/mail-catcher/{id:[0-9]+}', 'mail-catcher.show', MessagesController::class)
         ->delete('/mail-catcher/{id:[0-9]+}', 'mail-catcher.delete', MessagesController::class)

@@ -1,6 +1,6 @@
 {
   "name": "mrcaspan/flarum2-mail-catcher",
-  "description": "Catch every outgoing email in the database instead of sending it, and read or delete them from the admin panel. For Flarum 2.0 test and staging sites.",
+  "description": "Catch, log or forward the emails your Flarum 2.0 forum sends: catch them on test sites, log them while they are delivered on live sites to diagnose problems, or redirect them all to one address. Read, release and delete them from the admin panel.",
   "keywords": [
     "flarum",
     "flarum2",

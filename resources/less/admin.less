@@ -9,6 +9,78 @@
     color: var(--alert-color, #ad6c00);
   }
 
+  &-mode {
+    margin: 10px 0 5px;
+  }
+
+  &-modeRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &-modeLabel {
+    font-weight: 600;
+  }
+
+  &-modeHelp {
+    margin: 8px 0 0;
+  }
+
+  &-stat {
+    margin-left: 10px;
+
+    &--sent { color: #2e9e44; }
+    &--failed { color: #d83e3e; }
+  }
+
+  &-status {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    &--sent { background: #2e9e44; }
+    &--failed { background: #d83e3e; }
+    &--caught { background: #8a8f98; }
+  }
+
+  &-itemBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-top: 3px;
+  }
+
+  &-error {
+    margin-bottom: 10px;
+    color: #d83e3e;
+  }
+
+  &-debugTitle {
+    margin: 10px 0 6px;
+    font-weight: 600;
+    color: var(--muted-color);
+  }
+
+  &-headButtons {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  &-modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
   &-toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -84,7 +156,6 @@
 
   &-subject {
     font-weight: 600;
-    margin-top: 3px;
   }
 
   &-viewer {

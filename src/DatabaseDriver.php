@@ -12,7 +12,6 @@ namespace MrCaspan\MailCatcher;
 use Flarum\Mail\DriverInterface;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Contracts\Validation\Factory;
-use Illuminate\Database\ConnectionInterface;
 use Illuminate\Support\MessageBag;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 
@@ -22,7 +21,7 @@ use Symfony\Component\Mailer\Transport\TransportInterface;
 class DatabaseDriver implements DriverInterface
 {
     public function __construct(
-        protected ConnectionInterface $db
+        protected MessageStore $store
     ) {
     }
 
@@ -44,6 +43,6 @@ class DatabaseDriver implements DriverInterface
 
     public function buildTransport(SettingsRepositoryInterface $settings): TransportInterface
     {
-        return new DatabaseTransport($this->db);
+        return new DatabaseTransport($this->store);
     }
 }
