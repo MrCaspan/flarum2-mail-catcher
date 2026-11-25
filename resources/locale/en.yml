@@ -26,7 +26,6 @@ mrcaspan-flarum2-mail-catcher:
     catch_modal_settings: Your mail driver and SMTP settings are not changed. You can switch this off at any time to allow email to flow again.
     catch_modal_warning: PLEASE NOTE THIS STOPS ALL EMAIL FROM BEING SENT FROM THIS FORUM.
     catch_modal_confirm: Turn on Catch
-    driver_database: 'The mail driver is <b>database</b>, so every email is caught and nothing is sent. To use Log, choose a real mail driver in <a>Email settings</a>.'
     refresh_button: Refresh
     delete_all_button: Delete all
     delete_all_confirm: "{count, plural, one {Delete # email?} other {Delete all # emails?}}"

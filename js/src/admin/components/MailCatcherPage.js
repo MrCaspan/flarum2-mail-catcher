@@ -2,7 +2,6 @@ import app from 'flarum/admin/app';
 import ExtensionPage from 'flarum/admin/components/ExtensionPage';
 import Button from 'flarum/common/components/Button';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
-import Link from 'flarum/common/components/Link';
 import classList from 'flarum/common/utils/classList';
 import extractText from 'flarum/common/utils/extractText';
 import darkEmail from '../utils/darkEmail';
@@ -216,15 +215,6 @@ export default class MailCatcherPage extends ExtensionPage {
   modeBar() {
     if (!this.mode) return null;
 
-    // With the "database" mail driver everything is caught and nothing can be sent.
-    if (app.data.settings.mail_driver === 'database') {
-      return (
-        <div className="MailCatcher-mode">
-          <div className="MailCatcher-warning">{t('driver_database', { b: <b />, a: <Link href={app.route('mail')} /> })}</div>
-        </div>
-      );
-    }
-
     const current = this.mode.mode;
 
     const modeButton = (mode, icon) => (
@@ -319,7 +309,7 @@ export default class MailCatcherPage extends ExtensionPage {
         <div className="MailCatcher-head">
           <div className="MailCatcher-headSubject">{msg.subject || t('no_subject')}</div>
           <div className="MailCatcher-headButtons">
-            {msg.status === 'caught' && app.data.settings.mail_driver !== 'database' ? (
+            {msg.status === 'caught' ? (
               <Button className="Button" icon="fas fa-paper-plane" onclick={() => this.release(msg)}>
                 {t('release_button')}
               </Button>

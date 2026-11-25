@@ -130,7 +130,7 @@ class ReleaseController implements RequestHandlerInterface
         return preg_match('/^Message-ID:\s*<?([^>\r\n]+)>?/im', $headers, $m) ? trim($m[1]) : null;
     }
 
-    /** The real transport behind Mail Catcher. Not available with the "database" driver. */
+    /** The real transport behind Mail Catcher. */
     private function realTransport(): TransportInterface
     {
         $transport = $this->container->make('symfony.mailer.transport');

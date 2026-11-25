@@ -18,10 +18,6 @@ return [
 
     new Extend\Locales(__DIR__.'/resources/locale'),
 
-    // Shows up as "database" in Admin > Email > Mail Driver.
-    (new Extend\Mail())
-        ->driver('database', DatabaseDriver::class),
-
     // Wraps the real mail transport for the Catch / Log modes.
     (new Extend\ServiceProvider())
         ->register(MailCatcherServiceProvider::class),

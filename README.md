@@ -24,8 +24,7 @@ A forwarded email is sent exactly as written, so its *To:* line still shows the 
 
 ### Releasing a caught email
 
-Open a caught email and click **Release** to send it after all, through your real mail driver. You can send it to its original recipient or to a different address. Released emails get the same delivery details as Log (status, message ID, server conversation). Release needs a real mail driver, so it isn't available with the `database` driver.
-
+Open a caught email and click **Release** to send it after all, through your real mail driver. You can send it to its original recipient or to a different address. Released emails get the same delivery details as Log (status, message ID, server conversation).
 Log records, for each email:
 
 - **Status:** sent or failed
@@ -41,7 +40,6 @@ Emails are kept until you delete them. Log captures the full email, so clear the
 ## Features
 
 - Works with **any mail driver** (SMTP, Mailgun, Postmark, sendmail...). It wraps the driver's transport, so you keep your normal mail settings.
-- Also adds a **`database`** mail driver to *Admin → Email*. With it selected, every email is caught whatever the mode (how 1.x worked).
 - An inbox on the extension's admin page:
   - totals: how many emails, and how many sent, failed and caught
   - a list (newest first) showing the recipient, date, subject and status
@@ -80,7 +78,7 @@ php flarum cache:clear
 
 ## Uninstalling
 
-1. Set the mode to **Off**. If you used the `database` driver, switch *Admin → Email* back to a real one (SMTP, Mailgun, etc.).
+1. Set the mode to **Off**.
 2. Disable the extension. To also drop its table, run `php flarum migrate:reset --extension=mrcaspan-flarum2-mail-catcher`.
 3. Run `composer remove mrcaspan/flarum2-mail-catcher`.
 

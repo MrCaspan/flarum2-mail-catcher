@@ -23,11 +23,6 @@ class MailCatcherServiceProvider extends AbstractServiceProvider
     public function register(): void
     {
         $this->container->extend('symfony.mailer.transport', function (TransportInterface $transport, Container $container) {
-            // The "database" driver already catches everything.
-            if ($transport instanceof DatabaseTransport) {
-                return $transport;
-            }
-
             return new LoggingTransport(
                 $transport,
                 $container->make(CaptureMode::class),
